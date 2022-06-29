@@ -1,0 +1,71 @@
+<html>
+
+<body>
+{% block content %}
+
+<form action = "" method = "POST" name = "form_calc_fdet" >
+	<center>
+		<h3> To fu or not to fu </h3>
+		{{ form_calc_fdet.csrf_token }}
+		<p>
+			Exposure time (comma separated if multiple): {{ form_calc_fdet.exptime }} <br>
+			Limiting mag : {{ form_calc_fdet.limmags }} <br>
+			Tiling time (days) : {{ form_calc_fdet.tiling_times }} <br>
+			Localisation probability covered : {{ form_calc_fdet.frac_areas_covered }} <br>
+			Event distance (Mpc): {{ form_calc_fdet.distance }} <br>
+			{{ form_calc_fdet.submit_obsstats }}
+		</p>
+	</center>
+</form>
+
+<hr>
+<form action = "" method = "GET,POST" name = "form_fdets" >
+	<center>
+		{{ form_fdets.csrf_token }}
+		<p>
+			Detection fractions : {{ form_fdets.fdets }} <br>
+			
+		</p>
+	</center>
+</form>
+
+
+
+<center>
+<div id="table"></div>
+</center>
+<script>
+var array = {{ imagenames|tojson }}
+
+//array.forEach(function(item) {
+//var img = document.createElement("img");
+//img.src = item;
+//var src = document.getElementById("plotContainer");
+//src.appendChild(img);
+//});
+
+
+var newdiv;
+array.forEach(function(item) {
+    newdiv=document.createElement("div");
+    newdiv.style.width = '450px';
+    newdiv.style.height = '400px';
+    newdiv.style.border = '0.3px solid black';
+    newdiv.style.float = 'left';
+    var img = document.createElement("img");
+    img.src = item;
+    img.style.width=440;
+    img.style.height=400;
+    newdiv.appendChild(img);
+    document.getElementById('table').appendChild(newdiv);    
+    })
+    
+</script>
+
+
+
+{% endblock %}
+
+</body>
+
+</html>
