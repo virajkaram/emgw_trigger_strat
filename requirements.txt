@@ -1,0 +1,14 @@
+astropy
+pickle
+numpy
+pandas
+glob
+gwemlightcurve
+flask_wtf
+flask_restful
+wtforms
+sys
+datetime
+os
+flask
+scipy
